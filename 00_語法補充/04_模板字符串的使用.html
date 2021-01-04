@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 1.模板字符串的基本使用
+    const name = "why"
+    const age = 18
+    const message = `my name is ${name}`
+
+    // 2.標籤模板字符串: 可以通過模板字串的方式對一個函數進行調用
+    function test(...args) {
+      // console.log(name)
+      console.log(args)
+    }
+    // test("renny" ,"aaa", "ccc", "ddd")
+    // test`aaa`
+    test`my name is ${name}, age is ${age}`
+
+
+  </script>
+</body>
+</html>

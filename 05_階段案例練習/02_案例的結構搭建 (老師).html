@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    table {
+      border-collapse: collapse;
+    }
+
+    td {
+      padding: 5px 15px;
+      border: 1px solid black;
+    }
+
+    .num {
+      margin: 0 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <script src="../react/react.development.js"></script>
+  <script src="../react/react-dom.development.js"></script>
+  <script src="../react/babel.min.js"></script>
+
+  <script src="./format-utils.js"></script>
+
+  <script type="text/babel">
+    class App extends React.Component {
+      constructor() {
+        super();
+
+        this.state = {
+          books: [
+            {
+              name: '算法導論',
+              date: '2006-9',
+              price: 85,
+              num: 1,
+            },
+            {
+              name: 'UNIX-藝術編程',
+              date: '2006-2',
+              price: 59,
+              num: 1,
+            },
+            {
+              name: '編程珠璣',
+              date: '2008-9',
+              price: 39,
+              num: 1,
+            },
+            {
+              name: '代碼大全',
+              date: '2006-9',
+              price: 128,
+              num: 1,
+            }
+          ],
+
+        }
+
+      }
+
+      renderBooksList() {
+        const { books, total } = this.state
+        return (
+          <div>
+            <table>
+              <thead>
+                <tr>
+                  <td></td>
+                  <td>書籍名稱</td>
+                  <td>出版日期</td>
+                  <td>價格</td>
+                  <td>購買數量</td>
+                  <td>操作</td>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  books.map((item, index) => {
+                    return (
+                      <tr>
+                        <td>{index}</td>
+                        <td>{item.name}</td>
+                        <td>{item.date}</td>
+                        <td>{formatPrice(item.price)}</td>
+                        <td>
+                          <button disabled={item.num <= 1} onClick={() => { this.changeNum(index, -1) }}>-</button>
+                          <span className="num">{item.num}</span>
+                          <button onClick={() => { this.changeNum(index, 1) }}>+</button>
+                        </td>
+                        <td><button onClick={() => { this.deletItem(item, index) }}>刪除</button></td>
+                      </tr>)
+                  })
+                }
+              </tbody>
+            </table>
+            <h2>總價格 : {formatPrice(this.total())}</h2>
+          </div>
+        )
+      }
+
+      renderEmptyTip() {
+        return (
+          <h2>購物車為空</h2>
+        )
+      }
+
+      render() {
+        const { books, total } = this.state
+
+        return books.length? this.renderBooksList() : this.renderEmptyTip()
+      }
+
+      changeNum(index, count) {
+        const newBooks = [...this.state.books]
+        console.log(this.state.books)
+        console.log([...this.state.books])
+        newBooks[index].num += count
+        this.setState({
+          books: newBooks
+        })
+      }
+
+      deletItem(item, index) {
+        //React中的設計原則: state中的數據的不可變性
+
+        //自己寫的
+        // this.setState({
+        //   books: this.state.books.filter((x, y) => {
+        //     if (y !== index) {
+        //       return x
+        //     }
+        //   })
+        // })
+
+        //老師寫的
+        this.setState({
+          books: this.state.books.filter((itemy, indey) => {
+            return index != indey
+          })
+        })
+      }
+
+      total() {
+
+        //使用for循環
+        // let total = 0
+        // for (let item of this.state.books) {
+        //   total = total + item.num * item.price
+        // }
+
+        //使用reduce
+        //參數1: 上一次回調函數的結果
+        const total = this.state.books.reduce((preValue, item) => {
+          return preValue + item.num * item.price
+        }, 0)
+        return total
+      }
+
+
+    }
+
+    ReactDOM.render(<App />, document.getElementById("app"))
+  </script>
+</body>
+
+</html>

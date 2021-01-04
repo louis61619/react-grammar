@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h2 class="title"></h2>
+  <button>按下去 你將擁有全世界</button>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script>
+    //命令式編程: 每做一步操作，都是給計算機，一步一步命令
+    //聲明式編程:
+    
+    //定義數據
+    let message = "Hello World";
+
+    //將我們的數據顯示在標籤內
+    let title  = document.getElementsByClassName("title")[0]
+    title.innerHTML = message
+
+    //點擊數據發生改變
+    const btnEl = document.getElementsByTagName('button')[0]
+    btnEl.addEventListener('click',function() {
+      console.log('11111')
+      let message = "Hello React";
+      title.innerHTML = message
+    })
+  </script>
+</body>
+</html>

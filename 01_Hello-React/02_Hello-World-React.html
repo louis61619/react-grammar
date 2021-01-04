@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <div>Header</div>
+
+  <div id="app">app</div>
+
+  <div>Footer</div>
+  <!-- 添加react依賴 -->
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+  <!-- 使用JsX，並且希望script中的代碼被解析，需要再標籤添加一個屬性 -->
+  <!-- jsx特點: 最外層(根)只能有一個標籤 -->
+  <script type="text/babel">
+
+    function btnClick() {
+      message = "Hello React"
+      console.log(message)
+      render()
+    }
+    let message = "Hello World";
+    // ReactDom.render(渲染的內容, 掛載的對象)
+    function render() {
+      ReactDOM.render(
+        <div>
+          <h2>{message}</h2>
+          <button onClick={btnClick}>改變文本</button>
+        </div>,
+        document.getElementById("app")
+      );
+    }
+    render()
+  </script>
+</body>
+
+</html>

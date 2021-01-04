@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /**
+     * 面相物件有三大特性: 封裝/繼承/多態
+     * 繼承: 1.減少重複的代碼 2.多態的前提(鴨子類型)
+     */
+     class Person {
+       constructor(name, age) {
+         this.name = name;
+         this.age = age;
+       }
+
+       running() {
+         console.log("running")
+       }
+     }
+
+     class Student extends Person {
+       constructor(name, age, sno) {
+         super(name, age)
+         this.sno = sno
+       }
+     }
+
+     const stu = new Student("Renny", 18, 176);
+     console.log(stu)
+     stu.running();
+
+     class Teacher extends Person {
+       constructor(name, age, title) {
+         //子類中是必須初始化父類物件
+         super(name, age)
+         this.title = title
+       }
+     }
+
+     const tea = new Teacher("louis", 25, "頂尖工程師")
+     console.log(tea)
+     
+  </script>
+</body>
+</html>

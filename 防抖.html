@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+    // console.log(typeof "111")
+    // function debounce(fn, wait) {
+    //   var timeout = null;
+    //   return function () {
+    //     if (timeout !== null)
+    //       clearTimeout(timeout);
+    //     timeout = setTimeout(fn, wait);
+    //   }
+    // }
+    // // 处理函数
+    // function handle() {
+    //   console.log('----------');
+    // }
+    // // 滚动事件
+    // window.addEventListener('click', fun);
+
+    // function fun() {
+    //   debounce(handle, 5000)
+    // }
+
+    function throttle(fn, delay) {
+      var timer;
+      return function () {
+        var _this = this;
+        var args = arguments;
+        if (timer) {
+          return;
+        }
+        timer = setTimeout(function () {
+          fn.apply(_this, args);
+          timer = null; // 在delay後執行完fn之後清空timer，此時timer為假，throttle觸發可以進入計時器
+        }, delay)
+      }
+    }
+
+    function testThrottle( content) {
+      console.log( content);
+    }
+    var testThrottleFn = throttle(testThrottle, 5000); // 節流函數
+
+
+    setInterval(() => {
+      function lol() {
+        testThrottleFn( 'throttle'); // 給節流函數傳參
+      }
+      lol()
+    }, 500)
+  </script>
+</body>
+
+</html>

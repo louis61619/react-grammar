@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+  
+    <script src="../react/react.development.js"></script>
+    <script src="../react/react-dom.development.js"></script>
+    <script src="../react/babel.min.js"></script>
+  
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor() {
+          super();
+
+          this.state = {
+            message: "你好阿",
+            counter: 0,
+            movies: ['RE0', '怪獸8號', '海賊王', '火影']
+          }
+          
+          this.btnClick = this.btnClick.bind(this)
+        }
+  
+        render() {
+          return (
+            <div>
+              <button onClick={this.btnClick}>按鈕</button>
+              <ul>
+              {
+                this.state.movies.map((item, index, arr) => {
+                  return (<li className="item" 
+                              onClick={(e) => {this.liClick(item, index, e)}}>
+                            {item}
+                          </li>)
+                })
+              }
+              </ul>
+
+            </div>
+          )
+        } 
+        liClick(item, index, e) {
+          console.log("li發生了點擊", item, index, e)
+        }
+
+        btnClick(event) {
+          console.log(event)
+        }
+
+        //箭頭函數永遠不綁定this
+        //ES6中給對象增加屬性的方式: class fields
+        increment = () => {
+          console.log(this.state.counter)
+        }
+
+        decrement() {
+          console.log(this.state.counter)
+        }
+      }
+  
+      ReactDOM.render(<App/>, document.getElementById("app"))
+  </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+  
+    <script src="../react/react.development.js"></script>
+    <script src="../react/react-dom.development.js"></script>
+    <script src="../react/babel.min.js"></script>
+  
+    <script type="text/babel">
+      class App extends React.Component {
+        constructor() {
+          super();
+
+          this.state = {
+            names: ["abc", "vac", "fdsf", "fdsf"],
+            numbers: [102, 235, 565, 464, 484]
+          }
+  
+        }
+  
+        render() {
+          return (
+            <div>
+              <h2>名字列表</h2>
+              <ul>
+                {
+                  this.state.names.map(item => {
+                    return <li>{item}</li>
+                  })
+                }
+              </ul>
+              <h2>數字列表(過濾)</h2>
+              <ul>
+                {
+                  this.state.numbers.filter(item => item > 150).map(item => <li>{item}</li>)
+                }
+              </ul>
+              <h2>數字列表(擷取)</h2>
+              <ul>
+                {
+                  this.state.numbers.slice(0 ,3).map(item => {
+                    return <li>{item}</li>
+                  })
+                }
+              </ul>
+            </div>
+          )
+        } 
+      }
+  
+      ReactDOM.render(<App/>, document.getElementById("app"))
+  </script>
+</body>
+</html>

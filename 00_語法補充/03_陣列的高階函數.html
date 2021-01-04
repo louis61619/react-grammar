@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const names = ["abc", "cba", "nba", "mba"]
+    /**
+     *  回調函數有三個參數:
+          參數一: 執行時的對應元素
+          參數二: 執行的下標值
+          參數三: 完整的組件對象
+      
+     */
+
+    // names.map(回調函數， 給我們前面的回調函數綁定this)
+    // const newNames =  names.map((item, index, arr) => {
+    //   return item + "000"
+    // })
+
+      const newNames = names.filter(item => {
+        return item === "abc"
+      })
+
+    // console.log(names)
+
+    // console.log(newNames)
+
+    const nums = [1111, 5555, 3333, 44444, 55555]
+    const newNums =  nums.filter((item, index, arr) => {
+      return item >= 50; //返回boolean值
+    })
+    console.log(newNums)
+
+    const newNums2 =  nums.filter((item, index, arr) => {
+      return item % 2 === 0; //返回boolean值
+    })
+    console.log(newNums2)
+  </script>
+</body>
+</html>

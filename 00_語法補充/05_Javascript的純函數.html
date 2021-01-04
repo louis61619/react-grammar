@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 是否是一個純函數
+
+    function sun(num1, num2) {
+      return num1 + num2
+    }
+
+    sum(20, 30)
+    sum(20, 30)
+
+    // add是否是一個純函數: NO
+    let foo = 10;
+    function add(num) {
+      return foo + num
+    }
+    add(5) //15
+    foo = 20
+    add(5) //25
+
+    // add2是一個純函數
+    const bar = 10
+    function add2(num) {
+      return bar + num
+    }
+
+    //add3不是一個純函數
+    const baz = {
+      count: 5
+    }
+    function add2(num) {
+      return baz.count + num
+    }
+    baz.count = 20
+
+    // printInfo 不是一個純函數
+    // 因為會改變外部info的屬性
+    function printInfo(info) {
+      info.name = "why"
+      console.log(info.name, info.age)
+    }
+    const obj = {
+      name: "why",
+      age: 18
+    }
+    printInfo(obj)
+    
+
+  </script>
+</body>
+</html>
